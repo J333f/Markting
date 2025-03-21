@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpRoster - Payment</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .payment-container {
+            max-width: 900px;
+            margin: 120px auto 50px;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .payment-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .payment-header h1 {
+            color: #1a1f2e;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .payment-plan {
+            background: #f7f9fc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .plan-details h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #1a1f2e;
+        }
+        
+        .plan-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1f2e;
+        }
+        
+        .plan-period {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .payment-form {
+            margin-top: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #1a1f2e;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: #2563eb;
+            outline: none;
+        }
+        
+        .card-inputs {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .payment-method {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-method.active {
+            border-color: #2563eb;
+            background-color: rgba(37, 99, 235, 0.05);
+        }
+        
+        .payment-method img {
+            height: 24px;
+        }
+        
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: #1d4ed8;
+        }
+        
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #6b7280;
+            text-decoration: none;
+        }
+        
+        .back-link:hover {
+            color: #1a1f2e;
+        }
+        
+        /* QR Payment Styles */
+        .qr-container {
+            display: flex;
+            align-items: center;
+            background: #f7f9fc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .qr-code {
+            flex: 0 0 220px;
+            margin-right: 30px;
+        }
+        
+        .qr-code img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            border: 8px solid white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .qr-instructions {
+            flex: 1;
+        }
+        
+        .qr-instructions h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #1a1f2e;
+        }
+        
+        .qr-instructions p {
+            font-size: 15px;
+            color: #6b7280;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .supported-apps {
+            margin-top: 20px;
+        }
+        
+        .app-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        
+        .app-icons img {
+            height: 30px;
+            width: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .payment-container {
+                padding: 20px;
+                margin: 100px 20px 30px;
+            }
+            
+            .card-inputs {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-methods {
+                flex-direction: column;
+            }
+            
+            .qr-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .qr-code {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <a href="index.html" class="logo">EmpRoster</a>
+                <div class="nav-menu">
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#pricing">Pricing Plans</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="team.html">The Team</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="payment-container">
+        <div class="payment-header">
+            <h1 data-i18n="payment_title">Complete Your Purchase</h1>
+            <p data-i18n="payment_subtitle">Please provide your payment details to continue</p>
+        </div>
+        
+        <div class="payment-plan" id="selectedPlan">
+            <div class="plan-details">
+                <h3 data-i18n="plan_name">Plan: <span id="planName">Premium Plan</span></h3>
+                <p data-i18n="plan_includes">Includes all features and benefits</p>
+            </div>
+            <div>
+                <div class="plan-price" id="planPrice">SGD 8.50</div>
+                <div class="plan-period" data-i18n="per_user_monthly">per user per month</div>
+            </div>
+        </div>
+        
+        <div class="payment-form">
+            <div class="payment-methods">
+                <div class="payment-method active">
+                    <img src="https://cdn-icons-png.flaticon.com/512/196/196578.png" alt="Credit Card">
+                    <span data-i18n="credit_card">Credit Card</span>
+                </div>
+                <div class="payment-method">
+                    <img src="https://cdn-icons-png.flaticon.com/512/174/174861.png" alt="PayPal">
+                    <span>PayPal</span>
+                </div>
+                <div class="payment-method">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968220.png" alt="Apple Pay">
+                    <span>Apple Pay</span>
+                </div>
+                <div class="payment-method">
+                    <img src="https://cdn-icons-png.flaticon.com/512/4305/4305512.png" alt="QR Payment">
+                    <span data-i18n="qr_payment">QR Payment</span>
+                </div>
+            </div>
+            
+            <!-- QR Payment Section -->
+            <div id="qrPaymentSection" class="payment-section" style="display: none;">
+                <div class="qr-container">
+                    <div class="qr-code">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=EmpRosterPayment123456" alt="Payment QR Code">
+                    </div>
+                    <div class="qr-instructions">
+                        <h3 data-i18n="scan_qr">Scan QR Code to Pay</h3>
+                        <p data-i18n="qr_instructions">Use your mobile banking app or e-wallet to scan this QR code and complete the payment.</p>
+                        <div class="supported-apps">
+                            <span data-i18n="supported_apps">Supported apps:</span>
+                            <div class="app-icons">
+                                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968299.png" alt="PayNow" title="PayNow">
+                                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968313.png" alt="Grab Pay" title="Grab Pay">
+                                <img src="https://cdn-icons-png.flaticon.com/512/196/196566.png" alt="DBS PayLah!" title="DBS PayLah!">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Credit Card Payment Section -->
+            <div id="cardPaymentSection" class="payment-section">
+                <div class="form-group">
+                    <label for="name" data-i18n="full_name">Full Name</label>
+                    <input type="text" id="name" class="form-control" data-i18n-placeholder="enter_full_name" placeholder="Enter your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" data-i18n="email_address">Email Address</label>
+                    <input type="email" id="email" class="form-control" data-i18n-placeholder="enter_email" placeholder="Enter your email address">
+                </div>
+                
+                <div class="form-group">
+                    <label data-i18n="card_details">Card Details</label>
+                    <div class="card-inputs">
+                        <input type="text" class="form-control" data-i18n-placeholder="card_number" placeholder="Card number">
+                        <input type="text" class="form-control" data-i18n-placeholder="expiry_date" placeholder="MM/YY">
+                        <input type="text" class="form-control" data-i18n-placeholder="cvc" placeholder="CVC">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address" data-i18n="billing_address">Billing Address</label>
+                    <input type="text" id="address" class="form-control" data-i18n-placeholder="enter_address" placeholder="Enter your billing address">
+                </div>
+                
+                <div class="form-group">
+                    <label for="company" data-i18n="company_name">Company Name (Optional)</label>
+                    <input type="text" id="company" class="form-control" data-i18n-placeholder="enter_company" placeholder="Enter your company name">
+                </div>
+                
+                <button type="submit" class="submit-btn" data-i18n="complete_payment">Complete Payment</button>
+                
+                <a href="index.html#pricing" class="back-link" data-i18n="back_to_pricing">← Back to Pricing Plans</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get plan details from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const planName = urlParams.get('plan');
+            const planPrice = urlParams.get('price');
+            const planType = urlParams.get('type'); // trial or buy
+            
+            // Update the plan display
+            if (planName && planPrice) {
+                document.getElementById('planName').textContent = planName;
+                document.getElementById('planPrice').textContent = `SGD ${planPrice}`;
+                
+                // Change title based on plan type
+                if (planType === 'trial') {
+                    document.querySelector('.payment-header h1').textContent = 'Start Your Free Trial';
+                    document.querySelector('.submit-btn').textContent = 'Start Free Trial';
+                }
+            }
+            
+            // Payment method selection
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            const cardPaymentSection = document.getElementById('cardPaymentSection');
+            const qrPaymentSection = document.getElementById('qrPaymentSection');
+            
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', function() {
+                    // Remove active class from all methods
+                    paymentMethods.forEach(m => m.classList.remove('active'));
+                    
+                    // Add active class to selected method
+                    this.classList.add('active');
+                    
+                    // Show/hide appropriate payment section
+                    const methodName = this.querySelector('span').textContent.trim();
+                    if (methodName === 'QR Payment' || this.querySelector('img').alt === 'QR Payment') {
+                        cardPaymentSection.style.display = 'none';
+                        qrPaymentSection.style.display = 'block';
+                    } else {
+                        cardPaymentSection.style.display = 'block';
+                        qrPaymentSection.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Form submission
+            document.querySelector('.submit-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Get currently active payment method
+                const activeMethod = document.querySelector('.payment-method.active');
+                const paymentType = activeMethod.querySelector('span').textContent.trim();
+                
+                // Different message based on payment method
+                let message = 'Thank you for your purchase! ';
+                
+                if (paymentType === 'QR Payment' || activeMethod.querySelector('img').alt === 'QR Payment') {
+                    message += 'Once we confirm your QR payment, your account will be activated.';
+                } else {
+                    message += 'Your account has been created and you will receive an email confirmation shortly.';
+                }
+                
+                alert(message);
+                window.location.href = 'index.html';
+            });
+        });
+    </script>
+</body>
+</html> 

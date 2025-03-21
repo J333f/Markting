@@ -21,8 +21,35 @@
                         <li><a href="faq.html">FAQ</a></li>
                         <li><a href="team.html">The Team</a></li>
                         <li><a href="#meetings">Meetings</a></li>
-                        <li><a href="#documentation">Documentations</a></li>
+                        <li><a href="https://drive.google.com/drive/folders/1bihaNhzB_Fdy8RIni1WXUZNJfargvp_n?usp=drive_link" target="_blank">Documentations</a></li>
                     </ul>
+                </div>
+                <div class="language-selector">
+                    <div class="selected-language">
+                        <img src="images/flags/en.svg" alt="English" class="flag-icon">
+                        <span>English</span>
+                        <svg viewBox="0 0 24 24" class="dropdown-arrow" width="16" height="16">
+                            <path d="M7 10l5 5 5-5z" fill="currentColor"></path>
+                        </svg>
+                    </div>
+                    <div class="language-dropdown">
+                        <div class="language-option" data-lang="en">
+                            <img src="images/flags/en.svg" alt="English" class="flag-icon">
+                            <span>English</span>
+                        </div>
+                        <div class="language-option" data-lang="zh">
+                            <img src="images/flags/zh.svg" alt="中文" class="flag-icon">
+                            <span>中文</span>
+                        </div>
+                        <div class="language-option" data-lang="ms">
+                            <img src="images/flags/ms.svg" alt="Bahasa Melayu" class="flag-icon">
+                            <span>Bahasa Melayu</span>
+                        </div>
+                        <div class="language-option" data-lang="ta">
+                            <img src="images/flags/ta.svg" alt="தமிழ்" class="flag-icon">
+                            <span>தமிழ்</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -33,6 +60,9 @@
         <div class="hero-content">
             <h1>Intelligent Employee Scheduling</h1>
             <p>Streamline your workforce management with smart scheduling solutions</p>
+            <div class="hero-cta">
+                <a href="#" class="try-us-btn">Try Us Now</a>
+            </div>
         </div>
     </section>
 
@@ -105,7 +135,7 @@
             <div class="success-content">
                 <h2>Boost Team Efficiency & Collaboration</h2>
                 <p>EmpRoster makes team scheduling more efficient, providing an easy work experience for both employees and management</p>
-                <a href="#" class="learn-more-btn">Learn More</a>
+                <a href="learn-more.html" class="learn-more-btn">Learn More</a>
             </div>
         </div>
     </section>
@@ -182,7 +212,10 @@
                         <li><span class="check-icon">✓</span> 1GB storage</li>
                         <li><span class="check-icon">✓</span> Up to 10 users</li>
                     </ul>
-                    <a href="#" class="start-trial">Start free trial</a>
+                    <div class="pricing-buttons">
+                        <a href="payment.html?plan=Basic%20Plan&price=4.00&type=trial" class="start-trial" data-i18n="pricing_trial">Start Your Free Trial</a>
+                        <a href="payment.html?plan=Basic%20Plan&price=4.00&type=buy" class="buy-plan" data-i18n="buy_plan">Buy Plan Now</a>
+                    </div>
                 </div>
                 
                 <div class="pricing-card">
@@ -199,7 +232,10 @@
                         <li><span class="check-icon">✓</span> 5GB storage</li>
                         <li><span class="check-icon">✓</span> Up to 25 users</li>
                     </ul>
-                    <a href="#" class="start-trial">Start free trial</a>
+                    <div class="pricing-buttons">
+                        <a href="payment.html?plan=Advanced%20Plan&price=6.00&type=trial" class="start-trial" data-i18n="pricing_trial">Start Your Free Trial</a>
+                        <a href="payment.html?plan=Advanced%20Plan&price=6.00&type=buy" class="buy-plan" data-i18n="buy_plan">Buy Plan Now</a>
+                    </div>
                 </div>
                 
                 <div class="pricing-card popular">
@@ -219,11 +255,14 @@
                         <li><span class="check-icon">✓</span> Unlimited storage</li>
                         <li><span class="check-icon">✓</span> Unlimited users</li>
                     </ul>
-                    <a href="#" class="start-trial">Start free trial</a>
+                    <div class="pricing-buttons">
+                        <a href="payment.html?plan=Premium%20Plan&price=8.50&type=trial" class="start-trial" data-i18n="pricing_trial">Start Your Free Trial</a>
+                        <a href="payment.html?plan=Premium%20Plan&price=8.50&type=buy" class="buy-plan" data-i18n="buy_plan">Buy Plan Now</a>
+                    </div>
                 </div>
                 
                 <div class="pricing-card">
-                    <h3>Enterprise</h3>
+                    <h3 data-i18n="pricing_enterprise">Enterprise</h3>
                     <div class="price">
                         <span class="custom">Custom</span>
                     </div>
@@ -235,7 +274,9 @@
                         <li><span class="check-icon">✓</span> On-premise option</li>
                         <li><span class="check-icon">✓</span> Custom branding</li>
                     </ul>
-                    <a href="#" class="contact-us">Contact us</a>
+                    <div class="pricing-buttons">
+                        <a href="#" class="contact-us" data-i18n="contact_us" id="contactUsBtn">Contact us</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -260,6 +301,24 @@
             </div>
         </div>
     </section>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="contact-modal">
+        <div class="contact-modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 data-i18n="contact_modal_title">How would you like to contact us?</h2>
+            <div class="contact-options">
+                <a href="https://wa.link/a4zd4h" target="_blank" class="contact-option whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    <span data-i18n="contact_whatsapp">WhatsApp</span>
+                </a>
+                <button id="contactChatbotBtn" class="contact-option chatbot">
+                    <i class="far fa-comment-dots"></i>
+                    <span data-i18n="contact_chat">Chat Now</span>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Chatbot Section -->
     <div class="chatbot-container">
