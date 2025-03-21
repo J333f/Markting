@@ -674,6 +674,17 @@ const trans = {
     }
 };
 
+// Helper function to get language name
+function getLangName(langCode) {
+    const langNames = {
+        'en': 'English',
+        'zh': '中文',
+        'ms': 'Bahasa Melayu',
+        'ta': 'தமிழ்'
+    };
+    return langNames[langCode] || langCode;
+}
+
 // Function to translate the page
 function translatePage(lang) {
     document.documentElement.lang = lang;
