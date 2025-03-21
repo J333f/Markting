@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Calendar Base -->
+    <rect x="50" y="70" width="200" height="180" fill="#1a1f2e" rx="10"/>
+    <rect x="70" y="120" width="160" height="110" fill="white" rx="5"/>
+    
+    <!-- Calendar Header -->
+    <rect x="50" y="70" width="200" height="40" fill="#e94f4f" rx="10"/>
+    
+    <!-- Calendar Dots (representing days) -->
+    <circle cx="100" cy="150" r="8" fill="#1a1f2e"/>
+    <circle cx="140" cy="150" r="8" fill="#1a1f2e"/>
+    <circle cx="180" cy="150" r="8" fill="#1a1f2e"/>
+    <circle cx="100" cy="190" r="8" fill="#1a1f2e"/>
+    <circle cx="140" cy="190" r="8" fill="#e94f4f"/>
+    <circle cx="180" cy="190" r="8" fill="#1a1f2e"/>
+    
+    <!-- Clock Hand -->
+    <path d="M140 190 L170 160" stroke="#e94f4f" stroke-width="3"/>
+    <circle cx="140" cy="190" r="3" fill="#e94f4f"/>
+</svg> 

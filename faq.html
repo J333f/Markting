@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - EmpRoster</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fafafa;
+            position: relative;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 150, 94, 0.03) 0%, transparent 8%),
+                radial-gradient(circle at 80% 60%, rgba(0, 150, 94, 0.03) 0%, transparent 10%),
+                linear-gradient(135deg, rgba(240, 240, 240, 0.4) 0%, rgba(255, 255, 255, 0.9) 100%);
+            background-attachment: fixed;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .page-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .decorative-shape {
+            position: absolute;
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        .shape-1 {
+            top: 100px;
+            right: -50px;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(0, 150, 94, 0.05) 0%, rgba(0, 150, 94, 0) 70%);
+            animation: pulse 15s infinite alternate;
+        }
+        
+        .shape-2 {
+            bottom: 10%;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 150, 94, 0.03) 0%, rgba(0, 150, 94, 0) 60%);
+            animation: pulse 12s infinite alternate-reverse;
+        }
+        
+        .shape-3 {
+            top: 40%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(0, 150, 94, 0.07) 0%, rgba(0, 150, 94, 0) 70%);
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        /* Additional background shapes */
+        .shape-4 {
+            top: 30%;
+            right: 15%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(0, 150, 94, 0.03) 0%, rgba(0, 150, 94, 0) 70%);
+            animation: float 10s ease-in-out infinite reverse;
+        }
+        
+        .shape-5 {
+            bottom: 20%;
+            right: 5%;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(0, 150, 94, 0.04) 0%, rgba(0, 150, 94, 0) 70%);
+            animation: float 7s ease-in-out infinite 1s;
+        }
+        
+        .grid-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center center;
+            z-index: -2;
+            opacity: 0.2;
+        }
+        
+        .dots-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(0, 150, 94, 0.1) 1px, transparent 1px);
+            background-size: 18px 18px;
+            z-index: -1;
+            opacity: 0.15;
+        }
+        
+        .faq-container {
+            max-width: 900px;
+            margin: 90px auto 60px;
+            padding: 25px;
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.04);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+        
+        .faq-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #1a1f2e;
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .faq-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #00965e, #66d8af);
+            border-radius: 2px;
+        }
+        
+        .section-title {
+            color: #1a1f2e;
+            font-size: 1.3rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #00965e;
+            padding-bottom: 8px;
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .section-title:hover {
+            transform: translateX(5px);
+            color: #00965e;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background-color: #00965e;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .section-title:hover::before {
+            background-color: #00965e;
+            box-shadow: 0 0 10px rgba(0, 150, 94, 0.5);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, #00965e, transparent);
+        }
+        
+        .faq-list {
+            margin-bottom: 30px;
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border-left: 4px solid transparent;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .faq-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 150, 94, 0.03) 0%, rgba(0, 150, 94, 0) 60%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .faq-item:hover::before {
+            opacity: 1;
+        }
+        
+        .faq-item.active {
+            border-left: 4px solid #00965e;
+            background-color: #f8fefb;
+        }
+        
+        .faq-question {
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: #1a1f2e;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .question-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .question-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background-color: #e9f9f3;
+            color: #00965e;
+            border-radius: 50%;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 12px;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0, 150, 94, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .question-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .faq-item:hover .question-icon::before {
+            left: 100%;
+        }
+        
+        .faq-item.active .question-icon {
+            background-color: #00965e;
+            color: white;
+            box-shadow: 0 3px 10px rgba(0, 150, 94, 0.3);
+        }
+        
+        .faq-item:hover .faq-question {
+            color: #00965e;
+        }
+        
+        .faq-question::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 9px solid #00965e;
+            transition: transform 0.4s ease;
+            margin-left: 10px;
+            flex-shrink: 0;
+        }
+        
+        .faq-item.active .faq-question::after {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            line-height: 1.6;
+            color: #555;
+            font-size: 0.9rem;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 300px;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin: 40px 0 15px;
+            padding: 12px 28px;
+            background: linear-gradient(to right, #00965e, #2db980);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 150, 94, 0.2);
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-size: 0.9rem;
+        }
+        
+        .back-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, #007a4d, #00965e);
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0;
+            z-index: -1;
+        }
+        
+        .back-btn:hover::before {
+            opacity: 1;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 150, 94, 0.3);
+        }
+        
+        .back-btn::after {
+            content: "→";
+            position: absolute;
+            right: 32px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover::after {
+            opacity: 1;
+            right: 24px;
+        }
+        
+        /* Decorative elements */
+        .faq-container::before {
+            content: '';
+            position: absolute;
+            top: 150px;
+            right: 5%;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(0, 150, 94, 0.05) 0%, rgba(0, 150, 94, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        .faq-container::after {
+            content: '';
+            position: absolute;
+            bottom: 100px;
+            left: 5%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(0, 150, 94, 0.05) 0%, rgba(0, 150, 94, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 0.7; transform: scale(1.05); }
+        }
+        
+        @media (max-width: 768px) {
+            .faq-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .faq-question {
+                padding: 18px 20px;
+                font-size: 0.95rem;
+            }
+            
+            .faq-item.active .faq-answer {
+                padding: 0 20px 20px;
+            }
+        }
+        
+        /* 修复问题字体样式 */
+        .question-content span {
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body id="top">
+    <header>
+        <nav>
+            <div class="nav-container">
+                <a href="index.html" class="logo">EmpRoster</a>
+                <div class="nav-menu">
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#pricing">Pricing Plans</a></li>
+                        <li><a href="faq.html" class="active">FAQ</a></li>
+                        <li><a href="index.html#team">The Team</a></li>
+                        <li><a href="index.html#meetings">Meetings</a></li>
+                        <li><a href="index.html#documentation">Documentations</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find answers to common questions about EmpRoster scheduling system</p>
+        </div>
+    </section>
+
+    <div class="page-wrapper">
+        <div class="decorative-shape shape-1"></div>
+        <div class="decorative-shape shape-2"></div>
+        <div class="decorative-shape shape-3"></div>
+        <div class="decorative-shape shape-4"></div>
+        <div class="decorative-shape shape-5"></div>
+        <div class="grid-pattern"></div>
+        <div class="dots-pattern"></div>
+        
+        <div class="faq-container">
+            <h1 class="faq-title">Frequently Asked Questions</h1>
+            
+            <h2 class="section-title">General Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="question-content">
+                            <i class="question-icon">?</i>
+                            <span>What is EmpRoster?</span>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>EmpRoster is a smart, cloud-based workforce management platform designed to help businesses efficiently schedule shifts, track employee attendance, and streamline workforce operations.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="question-content">
+                            <i class="question-icon">?</i>
+                            <span>Who can use EmpRoster?</span>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>EmpRoster is designed for businesses of all sizes, including retail stores, restaurants, healthcare providers, and corporate offices that need to manage employee schedules.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="question-content">
+                            <i class="question-icon">?</i>
+                            <span>Is EmpRoster available on mobile devices?</span>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! EmpRoster is accessible on desktop, tablet, and mobile devices, ensuring you can manage schedules and track attendance anytime, anywhere.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 class="section-title">Features & Functionality</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="question-content">
+                            <i class="question-icon">?</i>
+                            <span>How does the shift scheduling feature work?</span>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our intuitive scheduling system allows managers to create, edit, and publish shifts in real-time. Employees can also view their schedules, swap shifts (with manager approval), and receive updates.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="question-content">
+                            <i class="question-icon">?</i>
+                            <span>Does EmpRoster support real-time notifications?</span>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! Employees and managers receive instant notifications for shift updates, approvals, reminders, and urgent changes.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="question-content">
+                            <i class="question-icon">?</i>
+                            <span>Can I integrate EmpRoster with other tools?</span>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, EmpRoster supports integration with payroll systems, communication tools, and third-party HR platforms.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 class="section-title">Pricing & Subscription</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="question-content">
+                            <i class="question-icon">?</i>
+                            <span>Is EmpRoster free?</span>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>EmpRoster offers a free trial with basic features. We have different subscription plans depending on your business size and needs.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="question-content">
+                            <i class="question-icon">?</i>
+                            <span>What payment methods do you accept?</span>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept credit cards, PayPal, and bank transfers for monthly or yearly subscriptions.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="question-content">
+                            <i class="question-icon">?</i>
+                            <span>Can I cancel my subscription anytime?</span>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can cancel your subscription at any time. However, refunds are subject to our cancellation policy.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 class="section-title">Support & Assistance</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="question-content">
+                            <i class="question-icon">?</i>
+                            <span>How can I get support if I have an issue?</span>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can reach out to our support team via email, live chat, or phone. We also have a help center with tutorials and guides.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="index.html" class="back-btn">Back to Home</a>
+        </div>
+    </div>
+    
+    <script>
+        // Add smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="index.html#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Allow normal navigation since these links point to the index page
+            });
+        });
+        
+        // Add scroll event listener to change header background opacity
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(26, 31, 46, 0.95)';
+            } else {
+                header.style.backgroundColor = '#1a1f2e';
+            }
+        });
+        
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items in this section
+                const section = item.closest('.faq-list');
+                section.querySelectorAll('.faq-item').forEach(faqItem => {
+                    faqItem.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+        
+        // Open first item in each section on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.faq-list').forEach(section => {
+                const firstItem = section.querySelector('.faq-item');
+                if (firstItem) {
+                    firstItem.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
